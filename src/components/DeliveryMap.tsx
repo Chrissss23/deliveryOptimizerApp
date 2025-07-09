@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ZoomIn, ZoomOut, LocateFixed, MapPin } from "lucide-react";
+import { getRestaurantLocation } from "@/config/restaurant";
 
 interface DeliveryMapProps {
   restaurantLocation?: { lat: number; lng: number; name: string };
@@ -17,39 +18,42 @@ interface DeliveryMapProps {
 }
 
 const DeliveryMap = ({
-  restaurantLocation = {
-    lat: 40.7128,
-    lng: -74.006,
-    name: "Restaurant HQ",
-  },
+  restaurantLocation = getRestaurantLocation(),
   deliveryPoints = [
     {
       id: "1",
-      address: "123 Main St",
-      lat: 40.72,
-      lng: -74.01,
+      address: "15 Water St, Plymouth, MA",
+      lat: 42.0584,
+      lng: -70.6673,
       sequenceNumber: 1,
     },
     {
       id: "2",
-      address: "456 Broadway",
-      lat: 40.718,
-      lng: -74.005,
+      address: "234 Sandwich St, Plymouth, MA",
+      lat: 42.0654,
+      lng: -70.6598,
       sequenceNumber: 2,
     },
     {
       id: "3",
-      address: "789 Park Ave",
-      lat: 40.715,
-      lng: -74.003,
+      address: "89 Summer St, Kingston, MA",
+      lat: 42.0097,
+      lng: -70.7264,
       sequenceNumber: 3,
     },
     {
       id: "4",
-      address: "101 5th Ave",
-      lat: 40.722,
-      lng: -74.008,
+      address: "456 Main St, Carver, MA",
+      lat: 41.8834,
+      lng: -70.7598,
       sequenceNumber: 4,
+    },
+    {
+      id: "5",
+      address: "123 School St, Duxbury, MA",
+      lat: 42.0417,
+      lng: -70.6723,
+      sequenceNumber: 5,
     },
   ],
   optimizedRoute = [0, 2, 3, 1, 0], // Indices of points in optimal order (starting and ending at restaurant)
